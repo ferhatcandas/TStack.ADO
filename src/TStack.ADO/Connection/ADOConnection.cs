@@ -6,6 +6,10 @@ namespace TStack.ADO.Connection
 {
     public class ADOConnection
     {
+        /// <summary>
+        /// ex : Server=.\SQLEXPRESS;Database=TESTDB;Trusted_Connection=True;
+        /// </summary>
+        /// <param name="connStr"></param>
         public ADOConnection(string connStr)
         {
             if (string.IsNullOrEmpty(connStr))

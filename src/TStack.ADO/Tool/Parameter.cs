@@ -6,12 +6,14 @@ namespace TStack.ADO.Tool
 {
     public class Parameter
     {
-        public Parameter(string key, string value)
+        public Parameter(string key, object value)
         {
             if (string.IsNullOrEmpty(key))
                 throw new ArgumentNullException(nameof(key));
-            if (string.IsNullOrEmpty(value))
+            Key = key.StartsWith("@") ? key : "@" + key;
+            if (value == null)
                 throw new ArgumentNullException(nameof(value));
+            Value = value;
         }
         internal string Key { get; private set; }
         internal object Value { get; private set; }

@@ -27,16 +27,32 @@ namespace TStack.ADO
         }
         private T SqlProcess<T>(Func<T> action)
         {
-            Open(_sqlConnection);
-            T response = action();
-            Close(_sqlConnection);
-            return response;
+            try
+            {
+                Open(_sqlConnection);
+                T response = action();
+                Close(_sqlConnection);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
         }
         private void SqlProcess(Action action)
         {
-            Open(_sqlConnection);
-            action();
-            Close(_sqlConnection);
+            try
+            {
+                Open(_sqlConnection);
+                action();
+                Close(_sqlConnection);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+          
         }
         internal T Parse<T>(object value)
         {
@@ -81,6 +97,7 @@ namespace TStack.ADO
            });
         }
         internal T ExecuteScalar<T>(SqlCommand command)
+            where T : struct
         {
             return SqlProcess<T>(() =>
             {
@@ -116,18 +133,6 @@ namespace TStack.ADO
         {
             _sqlDataReader = sqlCommand.ExecuteReader();
             return _sqlDataReader;
-        }
-    }
-    internal static class ADOExtension
-    {
-        internal static void AddParameters(this SqlCommand command, List<Parameter> parameters)
-        {
-            foreach (Parameter param in parameters)
-                command.Parameters.AddWithValue("@" + param.Key, param.Value);
-        }
-        internal static void ParseCommandType(this SqlCommand command, Tool.CommandType commandType)
-        {
-            command.CommandType = (System.Data.CommandType)Enum.Parse(typeof(System.Data.CommandType), commandType.ToString());
         }
     }
 }
