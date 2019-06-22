@@ -3,6 +3,9 @@
 This library was developed with .NET standard.
 
 ## Usage
+Before usage test project create manually database and table like on picture 
+
+![](documents/ADO.NET_TESTDB.png)
 
 #### Step One
 For usage is inheritance ADOConnection to new class and set connection to access database
@@ -31,7 +34,21 @@ That's it, ready to use.
 ## Library Fundamentals
 For use methods first learn what is parameters and features, lets look.
 #### Query
-This parameter must be **string** includes **stored procedure** name or **t-sql** query when input is stored procedure name than [CommandType](#commandtype) value set to StoredProcedure other wise Text
+This parameter reference type is **string** includes **stored procedure** name or **t-sql** query when input is stored procedure name than [CommandType](#commandtype) value set to StoredProcedure other wise Text
 #### CommandType
-
+This paramater reference type is enum and have two choice
+ - Text
+ - StoredProcedure
+ 
 #### Paramter
+This paramater reference type is List of Parameter class and for usage has two paramter key(string,not nullable), value(object, not nullable)
+Example Usage :
+```csharp
+ List<Parameter> parameters = new List<Parameter>();
+ parameters.Add("Name", "Ferhat");
+```
+**Note :** On input key parameter not required start with @ character, but if you can input this character library detect your character and dont repeat this character.
+```
+parameters.Add("Name", "Ferhat");    Allowed
+parameters.Add("@Name", "Ferhat"); Allowed
+```
