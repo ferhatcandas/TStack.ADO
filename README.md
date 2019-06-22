@@ -6,7 +6,8 @@ This library was developed with .NET standard.
 
 #### Step One
 For usage is inheritance ADOConnection to new class and set connection to access database
-```chsarp
+
+```csharp
   public class TestConnection : ADOConnection
     {
         public TestConnection() : base(@"Server=.\SQLEXPRESS;Database=TESTDB;Trusted_Connection=True;")
@@ -30,7 +31,7 @@ That's it, ready to use.
 ## Library Fundamentals
 For use methods first learn what is parameters and features, lets look.
 #### Query
-This parameter must be **string** includes **stored procedure** name or **t-sql** query when input is stored procedure name than CommandType [CommandType]("CommandType") value set to StoredProcedure other wise Text
+This parameter must be **string** includes **stored procedure** name or **t-sql** query when input is stored procedure name than [CommandType](#commandtype) value set to StoredProcedure other wise Text
 #### CommandType
 
 #### Paramter
