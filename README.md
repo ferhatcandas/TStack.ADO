@@ -44,7 +44,7 @@ This parameter is the reference type enum and have two choice
  - Text
  - StoredProcedure
  
-#### Paramter
+#### Parameter
 This parameter is reference type List of Parameter class and for usage has two parameter "key" (string,not nullable), "value" (object, not nullable)
 Example Usage :
 ```csharp
