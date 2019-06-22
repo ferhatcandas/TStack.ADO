@@ -53,7 +53,7 @@ Example Usage :
 ```
 **Note :** The @ character is not required in the entered key parameter. No problem if entered.
 ```
-parameters.Add("Name", "Ferhat");    Allowed
+parameters.Add("Name", "Ferhat");  Allowed
 parameters.Add("@Name", "Ferhat"); Allowed
 ```
 
