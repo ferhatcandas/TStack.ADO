@@ -2,10 +2,6 @@
 
 The purpose of this library is the **CRUD** operations on the mssql server and also to work with a clean architecture. This library was developed with .NET standard.
 
-## Coverage
-
-
-
 ## Usage
 Before usage test project create manually database table like on picture 
 
