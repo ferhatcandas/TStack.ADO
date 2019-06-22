@@ -36,7 +36,6 @@ ADOManager is an abstract class, so it must be inherited to your new class, in w
 That's it, ready to use.
 
 ## Library Fundamentals
-#
 For use methods first learn what is parameters and features, lets look.
 #### Query
 This parameter is the reference type **string**, if the entered query is **stored procedure**, the [CommandType](#commandtype) parameter should be selected as "StoredProcedure", otherwise "Text"
