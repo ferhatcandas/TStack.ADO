@@ -2,10 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Ferhat Candas</Authors>
+    <Description>The purpose of this library is the CRUD operations on the mssql server and also to work with a clean architecture. This library was developed with .NET standard.</Description>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageTags>ado, tstack</PackageTags>
+    <PackageProjectUrl>https://github.com/ferhatcandas/TStack.ADO</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ferhatcandas/TStack.ADO</RepositoryUrl>
+    <NeutralLanguage>English</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.6.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
