@@ -2,12 +2,31 @@
 
 The purpose of this library is the **CRUD** operations on the mssql server and also to work with a clean architecture. This library was developed with .NET standard.
 
-## Usage
+# Installation
+[Nuget Package](https://www.nuget.org/packages/TStack.ADO/)
+#### Package Manager
+```PM
+Install-Package TStack.ADO -Version 1.0.0
+```
+#### .NET CLI
+```PM
+dotnet add package TStack.ADO --version 1.0.0
+```
+#### PackageReference
+```PM
+<PackageReference Include="TStack.ADO" Version="1.0.0" />
+```
+#### Paket CLI
+```PM
+paket add TStack.ADO --version 1.0.0
+```
+
+# Usage
 Before usage test project create manually database table like on picture 
 
 ![](documents/ADO.NET_TESTDB.png)
 
-#### Step One
+### Step One
 Inherit the ADOConnection class to the new class you are creating and set up the database connection.
 
 ```csharp
@@ -19,7 +38,7 @@ Inherit the ADOConnection class to the new class you are creating and set up the
     }
 ```
 
-#### Step Two
+### Step Two
 ADOManager is an abstract class, so it must be inherited to your new class, in which case all methods can be used
 ```csharp
  public class SQLManager : ADOManager
