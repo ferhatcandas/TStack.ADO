@@ -77,7 +77,7 @@ parameters.Add("@Name", "Ferhat"); Allowed
 This function returns a generic variable type, the typed query contains a single row and must contain a single column.
 
 ```csharp
-_adomanager.ExecuteScalar<int>("SELECT count(*) from companies",CommandType.Text,null);
+int response = _adomanager.ExecuteScalar<int>("SELECT count(*) from companies",CommandType.Text,null);
 ```
 ### Execute
 This function has no return type. Runs a typed query.
