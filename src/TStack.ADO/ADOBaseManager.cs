@@ -82,13 +82,13 @@ namespace TStack.ADO
             _sqlCommand.ParseCommandType(commandType);
             return _sqlCommand;
         }
-        internal T Execute<T>(SqlCommand command)
-        {
-            return SqlProcess<T>(() =>
-            {
-                return Parse<T>(command.ExecuteNonQuery());
-            });
-        }
+        // internal T Execute<T>(SqlCommand command)
+        // {
+        //     return SqlProcess<T>(() =>
+        //     {
+        //         return Parse<T>(command.ExecuteNonQuery());
+        //     });
+        // }
         internal void Execute(SqlCommand command)
         {
             SqlProcess(() =>

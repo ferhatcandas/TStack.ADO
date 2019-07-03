@@ -71,7 +71,33 @@ Example Usage :
 parameters.Add("Name", "Ferhat");  Allowed
 parameters.Add("@Name", "Ferhat"); Allowed
 ```
+## Methods
 
+### ExecuteScalar
+This function returns a generic variable type, the typed query contains a single row and must contain a single column.
+
+```csharp
+_adomanager.ExecuteScalar<int>("SELECT count(*) from companies",CommandType.Text,null);
+```
+### Execute
+This function has no return type. Runs a typed query.
+```csharp
+_adomanager.Execute("TRUNCATE TABLE companies",CommandType.Text,null);
+```
+
+### GetDataTable
+This function returns datatable, Runs a typed query, but must contains single query.
+```csharp
+DataTable datatable = _adomanager.GetDataTable("SELECT * FROM companies",CommandType.Text,null);
+```
+### GetDataSet
+This function returns dataset, Runs a typed queries, contains can multiple queries.
+```csharp
+DataSet dataset = _adomanager.GetDataTable(@"
+SELECT * FROM companies;
+SELECT * FROM employees;
+",CommandType.Text,null);
+```
 # Author
 
 Ferhat Candaş - Software Developer

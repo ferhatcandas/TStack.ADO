@@ -40,11 +40,11 @@ namespace TStack.ADO
             var sqlCommand = CommandBuilder(command, commandType, parameters);
             Execute(sqlCommand);
         }
-        public T Execute<T>(string command, TStack.ADO.Tool.CommandType commandType, List<Parameter> parameters = null)
-        {
-            var sqlCommand = CommandBuilder(command, commandType, parameters);
-            return Execute<T>(sqlCommand);
-        }
+        // public T Execute<T>(string command, TStack.ADO.Tool.CommandType commandType, List<Parameter> parameters = null)
+        // {
+        //     var sqlCommand = CommandBuilder(command, commandType, parameters);
+        //     return Execute<T>(sqlCommand);
+        // }
         public DataTable GetDataTable(string command, TStack.ADO.Tool.CommandType commandType, List<Parameter> parameters = null)
         {
             var sqlCommand = CommandBuilder(command, commandType, parameters);
