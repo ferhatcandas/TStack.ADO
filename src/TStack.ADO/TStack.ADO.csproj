@@ -9,6 +9,9 @@
     <PackageProjectUrl>https://github.com/ferhatcandas/TStack.ADO</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ferhatcandas/TStack.ADO</RepositoryUrl>
     <NeutralLanguage>English</NeutralLanguage>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Execute&lt;T&gt; method excluded.</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
