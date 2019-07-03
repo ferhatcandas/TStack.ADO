@@ -6,19 +6,19 @@ The purpose of this library is the **CRUD** operations on the mssql server and a
 [Nuget Package](https://www.nuget.org/packages/TStack.ADO/)
 #### Package Manager
 ```PM
-Install-Package TStack.ADO -Version 1.0.0
+Install-Package TStack.ADO -Version 1.0.1
 ```
 #### .NET CLI
 ```PM
-dotnet add package TStack.ADO --version 1.0.0
+dotnet add package TStack.ADO --version 1.0.1
 ```
 #### PackageReference
 ```PM
-<PackageReference Include="TStack.ADO" Version="1.0.0" />
+<PackageReference Include="TStack.ADO" Version="1.0.1" />
 ```
 #### Paket CLI
 ```PM
-paket add TStack.ADO --version 1.0.0
+paket add TStack.ADO --version 1.0.1
 ```
 
 # Usage
@@ -31,22 +31,22 @@ Inherit the ADOConnection class to the new class you are creating and set up the
 
 ```csharp
   public class TestConnection : ADOConnection
-    {
-        public TestConnection() : base(@"Server=.\SQLEXPRESS;Database=TESTDB;Trusted_Connection=True;")
-        {
-        }
-    }
+  {
+      public TestConnection() : base(@"Server=.\SQLEXPRESS;Database=TESTDB;Trusted_Connection=True;")
+      {
+      }
+  }
 ```
 
 ### Step Two
 ADOManager is an abstract class, so it must be inherited to your new class, in which case all methods can be used
 ```csharp
  public class SQLManager : ADOManager
+ {
+    public SQLManager(TestConnection connection) : base(connection)
     {
-        public SQLManager(TestConnection connection) : base(connection)
-        {
-        }
     }
+ }
 ```
 That's it, ready to use.
 
