@@ -17,43 +17,27 @@ namespace TStack.ADO
             _adoConnection = new TContext();
             if (string.IsNullOrEmpty(_adoConnection.ConnectionString))
                 throw new ArgumentNullException();
-            _sqlConnection = new SqlConnection(_adoConnection.ConnectionString);
+            if (_sqlConnection == null)
+                _sqlConnection = new SqlConnection(_adoConnection.ConnectionString);
         }
     }
-    public abstract class ADOManager : ADOBaseManager
+    public class ADOManager : ADOBaseManager
     {
         public ADOManager(ADOConnection connection) : base(connection)
         {
         }
-        public ADOManager()
-        {
-            throw new ArgumentNullException("connection must not be null");
-        }
-        public T ExecuteScalar<T>(string command, TStack.ADO.Tool.CommandType commandType, List<Parameter> parameters = null)
-            where T : struct
-        {
-            var sqlCommand = CommandBuilder(command, commandType, parameters);
-            return ExecuteScalar<T>(sqlCommand);
-        }
-        public void Execute(string command, TStack.ADO.Tool.CommandType commandType, List<Parameter> parameters = null)
-        {
-            var sqlCommand = CommandBuilder(command, commandType, parameters);
-            Execute(sqlCommand);
-        }
-        // public T Execute<T>(string command, TStack.ADO.Tool.CommandType commandType, List<Parameter> parameters = null)
-        // {
-        //     var sqlCommand = CommandBuilder(command, commandType, parameters);
-        //     return Execute<T>(sqlCommand);
-        // }
-        public DataTable GetDataTable(string command, TStack.ADO.Tool.CommandType commandType, List<Parameter> parameters = null)
-        {
-            var sqlCommand = CommandBuilder(command, commandType, parameters);
-            return GetDataTable(sqlCommand);
-        }
-        public DataSet GetDataSet(string command, TStack.ADO.Tool.CommandType commandType, List<Parameter> parameters = null)
-        {
-            var sqlCommand = CommandBuilder(command, commandType, parameters);
-            return GetDataSet(sqlCommand);
-        }
+        public ADOManager() => throw new ArgumentNullException("connection must not be null");
+
+        public T ExecuteScalar<T>(string command, Tool.CommandType commandType, List<Parameter> parameters = null)
+            where T : struct => ExecuteScalar<T>(CommandBuilder(command, commandType, parameters));
+
+        public string ExecuteScalar(string command, Tool.CommandType commandType, List<Parameter> parameters = null)
+        => ExecuteScalar<string>(CommandBuilder(command, commandType, parameters));
+
+        public void Execute(string command, Tool.CommandType commandType, List<Parameter> parameters = null) => Execute(CommandBuilder(command, commandType, parameters));
+
+        public DataTable GetDataTable(string command, Tool.CommandType commandType, List<Parameter> parameters = null) => GetDataTable(CommandBuilder(command, commandType, parameters));
+
+        public DataSet GetDataSet(string command, Tool.CommandType commandType, List<Parameter> parameters = null) => GetDataSet(CommandBuilder(command, commandType, parameters));
     }
 }

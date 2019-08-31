@@ -9,7 +9,7 @@ namespace TStack.ADO
 {
     public abstract class ADOBaseManager
     {
-        internal SqlConnection _sqlConnection;
+        internal static SqlConnection _sqlConnection;
         internal SqlCommand _sqlCommand;
         internal SqlDataAdapter _sqlDataAdapter;
         internal SqlDataReader _sqlDataReader;
@@ -18,8 +18,12 @@ namespace TStack.ADO
         public ADOBaseManager(ADOConnection connection)
         {
             if (string.IsNullOrEmpty(connection.ConnectionString))
-                throw new ArgumentNullException();
-            _sqlConnection = new SqlConnection(connection.ConnectionString);
+                throw new ArgumentNullException(nameof(connection));
+            if (_sqlConnection == null)
+            {
+                _sqlConnection = new SqlConnection(connection.ConnectionString);
+                Open(_sqlConnection);
+            }
         }
         public ADOBaseManager()
         {
@@ -82,13 +86,6 @@ namespace TStack.ADO
             _sqlCommand.ParseCommandType(commandType);
             return _sqlCommand;
         }
-        // internal T Execute<T>(SqlCommand command)
-        // {
-        //     return SqlProcess<T>(() =>
-        //     {
-        //         return Parse<T>(command.ExecuteNonQuery());
-        //     });
-        // }
         internal void Execute(SqlCommand command)
         {
             SqlProcess(() =>
@@ -97,7 +94,6 @@ namespace TStack.ADO
            });
         }
         internal T ExecuteScalar<T>(SqlCommand command)
-            where T : struct
         {
             return SqlProcess<T>(() =>
             {
@@ -124,15 +120,7 @@ namespace TStack.ADO
                 return dataSet;
             });
         }
-        private SqlDataAdapter GetDataAdapter(SqlCommand sqlCommand)
-        {
-            _sqlDataAdapter = new SqlDataAdapter(sqlCommand);
-            return _sqlDataAdapter;
-        }
-        internal SqlDataReader GetDataReader(SqlCommand sqlCommand)
-        {
-            _sqlDataReader = sqlCommand.ExecuteReader();
-            return _sqlDataReader;
-        }
+        private SqlDataAdapter GetDataAdapter(SqlCommand sqlCommand) => new SqlDataAdapter(sqlCommand);
+        internal SqlDataReader GetDataReader(SqlCommand sqlCommand) => sqlCommand.ExecuteReader();
     }
 }

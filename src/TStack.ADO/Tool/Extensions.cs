@@ -5,9 +5,9 @@ using System.Text;
 
 namespace TStack.ADO.Tool
 {
-    public static class Extensions
+    internal static class Extensions
     {
-        public static void Add(this List<Parameter> parameters,string key, object value)
+        internal static void Add(this List<Parameter> parameters,string key, object value)
         {
             if (parameters == null)
                 throw new ArgumentNullException(nameof(parameters));
